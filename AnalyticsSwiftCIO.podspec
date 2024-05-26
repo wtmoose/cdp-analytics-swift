@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 
-    version = "1.5.12+cio.3"  # Define your version variable here
+    version = "1.5.13+cio.1"  # Define your version variable here
 
     s.name = "AnalyticsSwiftCIO"
     s.version = version
