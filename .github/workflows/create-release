@@ -1,0 +1,62 @@
+name: Cocoapods Release workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to create and deploy'
+        required: true
+
+permissions:
+    contents: write
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Required due to the way Git works, without it this action won't be able to find any or the correct tags
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+    
+      - name: Install CocoaPods
+        run: gem install cocoapods
+
+      - name: Get current version
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+        
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            tag_name: ${{ github.event.inputs.tag }}
+            release_name: ${{ github.event.inputs.tag }}
+            draft: false
+            prerelease: false
+            body: |
+              Changes since [${{ steps.previoustag.outputs.tag }}](https://github.com/${{ github.repository }}/compare/${{ steps.previoustag.outputs.tag }}...${{ github.event.inputs.tag }})
+
+      - name: Manually update version and tag in podspec
+        run: |
+          sed -i.bak 's/\(version = \)"[^"]*"/\1"${{ github.event.inputs.tag }}"/' AnalyticsSwiftCIO.podspec
+          rm AnalyticsSwiftCIO.podspec.bak
+
+      - name: Commit and push podspec
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Bump podspec version to ${{ github.event.inputs.tag }}"
+          file_pattern: AnalyticsSwiftCIO.podspec
+
+      - name: Deploy to cocoapoads
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+        run: |
+            pod trunk push AnalyticsSwiftCIO.podspec --allow-warnings
