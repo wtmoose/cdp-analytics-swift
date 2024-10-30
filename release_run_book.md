@@ -18,7 +18,7 @@ This document outlines the steps required to create a release for the project. S
 
    Update the `Package.swift` file of the SDK to fetch the changes you want to test
    ```swift
-           .package(name: "CioAnalytics", url: "https://github.com/customerio/cdp-analytics-swift.git", .branch("test"))
+           .package(name: "CioAnalytics2", url: "https://github.com/customerio/cdp-analytics-swift.git", .branch("test"))
    ```
 
    We validate it on `APNUIKit` which uses SPM to fetch the SDK.

@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
     s.swift_version = '5.3'
     s.cocoapods_version = '>= 1.11.0'
-    s.module_name = "CioAnalytics"
+    s.module_name = "CioAnalytics2"
 
     s.source_files = "Sources/**/*.swift"
     s.resource_bundles = {

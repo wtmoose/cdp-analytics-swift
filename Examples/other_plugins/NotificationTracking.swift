@@ -36,7 +36,7 @@
 #if !os(Linux) && !os(macOS) && !os(Windows)
 
 import Foundation
-import CioAnalytics
+import CioAnalytics2
 
 class NotificationTracking: Plugin {
     var type: PluginType = .utility

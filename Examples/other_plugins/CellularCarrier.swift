@@ -35,7 +35,7 @@
 #if os(iOS) && !targetEnvironment(macCatalyst)
 
 import Foundation
-import CioAnalytics
+import CioAnalytics2
 import CoreTelephony
 
 /**

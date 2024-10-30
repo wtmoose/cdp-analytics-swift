@@ -34,7 +34,7 @@
 
 import Foundation
 import UIKit
-import CioAnalytics
+import CioAnalytics2
 import AdSupport
 import AppTrackingTransparency
 

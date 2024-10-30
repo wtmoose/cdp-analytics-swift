@@ -31,7 +31,7 @@
 
 import Foundation
 import UIKit
-import CioAnalytics
+import CioAnalytics2
 
 class QueryAlertController: UIAlertController {
     // we already conform to UIKitScreenTrackable so override

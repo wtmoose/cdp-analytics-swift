@@ -23,7 +23,7 @@ internal class Storage: Subscriber {
         self.storageMode = storageMode
         self.userDefaults = UserDefaults(suiteName: "com.segment.storage.\(writeKey)")!
         
-        var storageURL = CioAnalytics.eventStorageDirectory(writeKey: writeKey)
+        var storageURL = CioAnalytics2.eventStorageDirectory(writeKey: writeKey)
         let asyncAppend = (operatingMode == .asynchronous)
         switch storageMode {
         case .diskAtURL(let url):
