@@ -14,7 +14,7 @@ internal protocol ObjCEvent {
     var _event: EventType { get set }
 }
 
-@objc(CIODestinationMetadata)
+@objc(CIODestinationMetadata2)
 public class ObjCDestinationMetadata: NSObject {
     internal var _metadata: DestinationMetadata
 
@@ -43,7 +43,7 @@ public class ObjCDestinationMetadata: NSObject {
     }
 }
 
-@objc(CIORawEvent)
+@objc(CIORawEvent2)
 public protocol ObjCRawEvent: NSObjectProtocol {
     var type: String? { get }
     var messageId: String? { get }
@@ -80,7 +80,7 @@ internal func objcEventFromEvent<T: RawEvent>(_ event: T?) -> ObjCRawEvent? {
     }
 }
 
-@objc(CIOTrackEvent)
+@objc(CIOTrackEvent2)
 public class ObjCTrackEvent: NSObject, ObjCEvent, ObjCRawEvent {
     internal var _event: TrackEvent
 
@@ -139,7 +139,7 @@ public class ObjCTrackEvent: NSObject, ObjCEvent, ObjCRawEvent {
     }
 }
 
-@objc(CIOIdentifyEvent)
+@objc(CIOIdentifyEvent2)
 public class ObjCIdentifyEvent: NSObject, ObjCEvent, ObjCRawEvent {
     internal var _event: IdentifyEvent
 
@@ -192,7 +192,7 @@ public class ObjCIdentifyEvent: NSObject, ObjCEvent, ObjCRawEvent {
     }
 }
 
-@objc(CIOScreenEvent)
+@objc(CIOScreenEvent2)
 public class ObjCScreenEvent: NSObject, ObjCEvent, ObjCRawEvent {
     internal var _event: ScreenEvent
 
@@ -257,7 +257,7 @@ public class ObjCScreenEvent: NSObject, ObjCEvent, ObjCRawEvent {
     }
 }
 
-@objc(CIOGroupEvent)
+@objc(CIOGroupEvent2)
 public class ObjCGroupEvent: NSObject, ObjCEvent, ObjCRawEvent {
     internal var _event: GroupEvent
 
@@ -316,7 +316,7 @@ public class ObjCGroupEvent: NSObject, ObjCEvent, ObjCRawEvent {
     }
 }
 
-@objc(CIOAliasEvent)
+@objc(CIOAliasEvent2)
 public class ObjCAliasEvent: NSObject, ObjCEvent, ObjCRawEvent {
     internal var _event: AliasEvent
 

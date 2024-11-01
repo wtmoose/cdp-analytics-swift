@@ -10,7 +10,7 @@
 
 import Foundation
 
-@objc(CIOPlugin)
+@objc(CIOPlugin2)
 public protocol ObjCPlugin {}
 
 public protocol ObjCPluginShim {
@@ -27,7 +27,7 @@ public class ObjCSegmentMixpanel: NSObject, ObjCPlugin, ObjCPluginShim {
 
 */
 
-@objc(CIOEventPlugin)
+@objc(CIOEventPlugin2)
 public class ObjCEventPlugin: NSObject, EventPlugin, ObjCPlugin {
     public var type: PluginType = .enrichment
     public weak var analytics: Analytics? = nil
@@ -48,7 +48,7 @@ public class ObjCEventPlugin: NSObject, EventPlugin, ObjCPlugin {
     }
 }
 
-@objc(CIOBlockPlugin)
+@objc(CIOBlockPlugin2)
 public class ObjCBlockPlugin: ObjCEventPlugin {
     let block: (ObjCRawEvent?) -> ObjCRawEvent?
 
